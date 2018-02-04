@@ -17,7 +17,7 @@ if (!file.exists("./Project1/Household_Power_Consumption")) {
 
 # Read the file into R, but only for dates February 1, 2007 and February 2, 2007 instead of the full large file to save space and memory.
 subsetdata <- subset(read.csv2("./Project1/Household_Power_Consumption.txt", header = TRUE, sep = ";", na.strings = "?", stringsAsFactors = TRUE), Date %in% c("2/1/2007","2/2/2007"))
-
+# Convert factor variable into character and then into numeric
 subsetdata$Global_active_power <- as.numeric(as.character(subsetdata$Global_active_power))
 png("./Project1/Plot1.png")
 hist(subsetdata$Global_active_power, main = "Global Active Power", xlab = "Global Active Power (kilowatts)", col = "red", ylab = "Frequency" )
