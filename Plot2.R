@@ -17,8 +17,11 @@ if (!file.exists("./Project1/Household_Power_Consumption")) {
 
 # Read the file into R, but only for dates February 1, 2007 and February 2, 2007 instead of the full large file to save space and memory.
 HPCdata <- read.csv("./Project1/Household_Power_Consumption.txt", header=T, sep=';', na.strings="?", check.names=F, stringsAsFactors=F, comment.char="", quote='\"')
+# take the subset of the full data to pull information only for the given dates
 subdata <- subset(HPCdata, Date %in% c("1/2/2007","2/2/2007"))
+# convert the date column using as.Date function
 subdata$Date <- as.Date(subdata$Date, format="%d/%m/%Y")
+# concatenate data and time and convert that into a POSIXct date and add that as a new column of the subset data set
 datetime <- paste(as.Date(subdata$Date), subdata$Time)
 subdata$Datetime <- as.POSIXct(datetime)
 
