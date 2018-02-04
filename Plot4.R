@@ -29,6 +29,7 @@ subdata$datetime <- strptime(paste(subdata$Date, subdata$Time), "%Y-%m-%d %H:%M:
 
 # Plot 4
 subdata$datetime <- as.POSIXct(subdata$datetime)
+# setting graphical parameters into vector form so the four following plots are drawn in 2X2 array
 par(mfrow = c(2,2))
 attach(subdata)
 plot(Global_active_power ~ datetime, type = "l", ylab = "Global Active Power", 
